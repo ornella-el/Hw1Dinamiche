@@ -1,0 +1,162 @@
+\documentclass[11pt,largemargins]{homework}
+
+\newcommand{\hwname}{Andrea Sanna}
+\newcommand{\hwemail}{s222975@studenti.polito.it}
+\newcommand{\hwtype}{Homework}
+\newcommand{\hwnum}{1}
+\newcommand{\hwclass}{}
+\newcommand{\hwlecture}{}
+\newcommand{\hwsection}{}
+
+\usepackage{lipsum}
+\usepackage{amssymb}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsfonts}
+\usepackage{hyperref}
+\usepackage{bbm}
+\usepackage{amsmath}
+\usepackage{epstopdf}
+\usepackage{enumitem}
+\usepackage{subcaption}
+\usepackage{bbm}
+
+\begin{document}
+\maketitle
+\begin{center}
+Realizzato in collaborazione con Ornella Elena Grassi(s...)
+\end{center}
+\section %ESERCIZIO 1
+
+\begin{enumerate}[label=(\alph*)]
+\item %1a
+Il numero minimo di archi da rimuovere affinche non possa esserci  flusso da o a d è pari al numero di cammini linearmente indipendenti fra o e d, che sono due:
+$o \rightarrow a \rightarrow d$ e 
+$o \rightarrow b \rightarrow d$
+
+Per disconnettere o e d è necessario rimuovere un arco per ciascuno dei cammini:
+\begin{itemize}
+\item elimino $e_1$ o $e_4$ da $o\rightarrow a\rightarrow d$, quindi rimuovo capacità pari a $C=3$
+\item elimino $e_2$ o $e_5$ da $o\rightarrow b\rightarrow d$, quindi rimuovo capacità pari a $C=2$
+\end{itemize}
+Allora, affinchè non ci sia flusso fra o e d è necessario rimuovere almeno una capacità totale pari a $C=5$.
+
+\item %1b
+Dal testo sappiamo che le funzioni di ritardo sono date da:\\ $d_1(x)=d_5(x)=x+1, d_3(x)=1, d_2(x)=d_4(x)=5x+1$.\\
+Per il teorema di Max Flow -Min Cut il flusso massimo è pari alla somma delle capacità degli archi del taglio minimo. Nel grafo considerato i possibili tagli sono:
+\begin{itemize}
+\item $u_1$ associato alla partizione $\mathcal{U}_1=\{o\}$, con capacità $C^*_1=3+2=5$
+\item $u_2$ associato alla partizione $\mathcal{U}_2=\{o,a\}$, \\con capacità $C^*_2=2+2+3=7$
+\item $u_3$ associato alla partizione $\mathcal{U}_3=\{o,b\}$, \\con capacità $C^*_1=3+2=5$
+\item $u_4$ associato alla partizione $\mathcal{U}_4=\{o,a,b\}$ \\con capacità $C^*_1=3+2=5$
+\end{itemize}
+Per massimizzare il flusso aggiungo le capacità sugli archi condivisi fra i tagli minimi:
+\begin{itemize}
+
+\item aggiungo un'unità di capacità a $e_1$ $\Rightarrow C_1^*=C^*_3=6$
+\item aggiungo un'unità di capacità a $e_5$ $\Rightarrow C_3^*=7, C^*_4=6$
+\end{itemize} 
+
+Rispetto alla configurazione precedente, ora il taglio minimo ha ca\-pa\-ci\-tà 6: la capacità del taglio minimo è aumentata di un'unità.
+Se le unità fossero state aggiunte aggiunte entrambe a $e_1$ o $e_2$ o $e_4$ o $e_5$ il flusso massimo avrebbe ancora capacità pari a 5, perchè la capacità di uno dei 3 tagli minimi sarebbe rimasta invariata, rimanendo quindi il taglio minimo.
+\item %1c
+Siano $z_1, z_2, z_3$ le porzioni frazioni di flusso su ciascuno dei tre percorsi possibili (quindi tali che $z_1+z_2+z_3=1$, con le funzioni di ritardo ad essi associate sono dati da:
+\begin{itemize}
+\item $p^{(1)}: o\rightarrow a \rightarrow d$, con funzione di ritardo  
+$\Delta_1=6z_1+z_3+2$
+\item $p^{(2)}: o\rightarrow b \rightarrow d$, con $\Delta_2=6z_2+z_3+2$
+\item $p^{(3)}: o\rightarrow a\rightarrow b \rightarrow d$, con $\Delta_3=z_1+z_2+2z_3+3$
+\end{itemize}
+L'equilibrio di Wardrop è la configurazione dei flussi che corrisponde all'ottimo per l'utente, quindi se il flusso sul percorso i non è nullo, cioè $z_i>0$, la funzione di ritardo associata è tale che $\Delta_i\leq\Delta_j, \forall j \neq i$. Calcoliamo i flussi.\\
+Ipotizziamo $z_1>0, z_2>0,$; avremo quindi: 
+\[\begin{cases} \Delta_1\leq \Delta_2 \Leftrightarrow 6z_1+z_3+2\leq 6z_2+z_3+2 \Leftrightarrow z_1\leq z_2\\ 
+\Delta_2\leq \Delta_1 \Leftrightarrow 6z_2+z_3+2\leq 6z_1+z_3+2 \Leftrightarrow z_1\geq z_2\end{cases}\]
+Da queste due disequazioni otteniamo $z_1=z_2$.\\
+Ipotizziamo ora $z_3>0$ (in aggiunta a $z_1=z_2>0$):
+\[\begin{cases} \Delta_3 \leq \Delta_1 \Leftrightarrow z_1+z_2+2z_3 \leq 6z_1+z_3+2 \Leftrightarrow z_3\leq 4z_1-1 \\ \Delta_1 \leq \Delta_3 \Leftrightarrow 6z_1+z_3+2 \leq z_1+z_2+2z_3\Leftrightarrow z_3\geq 4z_1-1\end{cases}\]
+Quindi $z_3=4z_1-1$.
+ 
+In definitiva otteniamo che $z_1=z_2$ e $z_3=4z_1-1$ e, in aggiunta alla condizione $z_1+z_2+z_3=1$, otteniamo la configurazione dell'equilibrio di Wardrop con $z=(z_1, z_2, z_3)=(\frac{1}{3}, \frac{1}{3}, \frac{1}{3})$. 
+Il corrispondente vettore di flusso sugli archi $f^{(UO)}$, in cui ciascuna delle componenti è $f^{(UO)}_{e_i}$, ossia il flusso sull'arco $e_i$, sarà: $f^{(UO)}=(\frac{2}{3}, \frac{1}{3}, \frac{1}{3}, \frac{1}{3}, \frac{2}{3})$.\\
+
+Il tempo totale di percorrenza (Total Travel Time) è uguale su tutti e tre i percorsi (per definizione di equilibrio di Wardrop) ed è pari a: \[TTT=6\frac{1}{3}+\frac{1}{3}+2=\frac{13}{3}\]
+\item %1d
+Calcolare il flusso dell'ottio sociale corrisponde a minimizzare la funzione di costo c data dalla somma sugli archi del flusso passante su ciascun arco moltiplicato per la funzione di ritardo dell'arco stesso, ovvero:
+dei flussi sui percorsi $z_i$ moltiplicati per le funzioni di ritardo di ciascuno degli edge sui quali passano:
+\begin{multline*}c= (z_1+z_3)(z_1+z_3+1)+z_2(5z_2+1)+z_3+z_1(5z_1+1)+(z_2+z_3)(z_2+z_3+1) \\ \Rightarrow c=6z_1^2+6z_2^2-3z_1-3z_2+5 \end{multline*}
+dove abbiamo utilizzato la condizione $z_3=1-z_1-z_2$. Per massimizzare questa funzione calcoliamo il gradiente di c rispetto alle due variabili rimaste e imponiamolo pari a 0:
+\[\begin{cases}\frac{\partial c}{\partial z_1} = 12z_1-3=0 \Leftrightarrow z_1=\frac{1}{4} \\
+\frac{\partial c}{\partial z_2} =12z_2-3=0 \Leftrightarrow z_2=\frac{1}{4} \end{cases}\]
+Usando di nuovo la condizione $z_1+z_2+z_3=1$ si ottiene $z_3=\frac{2}{4}$. In conclusione $z=(\frac{1}{4},\frac{1}{4}, \frac{2}{4})$.
+Il corrispondente flusso sugli archi all'ottimo di sistema sarà dato da: $f^{(SO)}=(\frac{3}{4},\frac{1}{4},\frac{2}{4}, \frac{1}{4}, \frac{2}{4})$
+Il ritardo medio all'ottimo di sistema è dato da: \[\sum_{e\in \mathcal{E}}f_e d(f_e)=\frac{3}{4}(\frac{3}{4}+1)+\frac{1}{4}(\frac{5}{4}+1)\frac{1}{2}+\frac{1}{4}(\frac{5}{4}+1)+\frac{3}{4}(\frac{3}{4}+1)=\frac{17}{4}\]
+
+\item Il prezzo dell'anarchia (PoA) è dato dal rapporto fra il ritardo medio all'equilibrio di Wardrop rispetto il ritardo all'ottimo di sistema, quindi:
+\[PoA=\frac{\frac{13}{3}}{\frac{17}{4}}=\frac{52}{51}\]
+
+\item Un modo per calcolare i pedaggi sugli archi è quello dei pedaggi marginali: 
+\[ \omega_i =f_e^* d'_e (f_e)\]
+I pedaggi sugli archi saranno quindi: 
+\[\omega^*_1=\omega^*_5=1\frac{3}{4}=\frac{3}{4}\]
+\[\omega^*_2=\omega^*_4=5\frac{1}{2}=\frac{5}{2}\]
+\[\omega^*_3=0\]
+Il vettore dei pedaggi sarà quindi: $\omega^*=(\frac{3}{4},\frac{1}{2},0,\frac{5}{2},\frac{3}{4})$
+
+Aggiungiamo che PoA=1?
+Calcolando l'equilibrio di Wardrop con le nuove funzioni di ritardo coi pedaggi si ottiene:
+\newpage
+ \section%ESERCIZIO 2
+\begin{enumerate}[label=(\alph*)]
+\item %2a
+Sia $\mathcal{G}=(\mathcal{V},\mathcal{E}, W)$ il grafo assegnato. La matrice dei pesi è data da:
+\[W=\begin{bmatrix}
+a & 1 & 0 & 0 \\
+0 & 0 & 1 & 1 \\
+0 & 0 & 0 & 1 \\
+1 & 1 & 0 & 0 \end{bmatrix}\]
+Definendo come $w=diag(W)=(a, 0, 0, 0)$ il vettore della diagonale di W, la matrice dei pesi normalizzata P è:
+\[P=D^{-1}W=\begin{bmatrix} 
+\frac{a}{a+1} & \frac{1}{a+1} & 0 & 0 \\
+0 & 0 & \frac{1}{2} & \frac{1}{2} \\
+0 & 0 & 0 & 1\\
+\frac{1}{2} & \frac{1}{2} & 0 & 0 \end{bmatrix}\]
+Il Laplaciano L è:
+\[L=D-W=\begin{pmatrix}
+1 & -1 & 0 & 0\\
+0 & 2 & -1 & -1\\
+0 & 0 & 1 & -1\\
+-1 & -1 & 0 & 2 \end{pmatrix}\]
+
+\item %2b (il punto b è vuoto, non c'è una domanda)
+Osserviamo che $\mathcal{G}$ è fortemente connesso e aperiodico $\forall a \geq 0$, \\infatti se $a>0$ il grafo contiene un self-loop e quindi è aperiodico, mentre se $a=0$, quindi non è più presente il self-loop, rimane aperiodico perchè contiene, ad esempio, i cicli $2\rightarrow 4 \rightarrow 1$ e $2 \rightarrow 4 \rightarrow 1 \rightarrow 2$ cicli di lunghezza 2 e 3, che sono coprimi.
+Inoltre $\mathcal{G}$ è bilanciato, cioè ogni nodo ha grado entrante pari al grado uscente.\\
+
+Consideriamo la dinamica di opinione di French-De Groot sul grafo $\mathcal{G}$: $x(t+1)=Px(t)$.
+Dato che $\mathcal{G}$ è fortemente connesso e aperiodico per ogni $a\geq0$, allora la dinamica converge al consenso per ogni $a\geq0$: \[\lim_{t \to \infty}x_i(t)=\pi ' x(0)= \sum_i 	\pi_i x_i(0), \forall x(0)\] dove abbiamo indicato con $\pi$ la distribuzione invariante di cent\-ra\-li\-tà, data da $\pi'=\pi'P$.\\
+Dal fatto che $G$ è fortemente connesso sappiamo che $\pi_i>0 \forall i$. In particolare, dal fatto che $\mathcal{G}$ è bilanciato, sappiamo che la misura invariante è proporzionale al vettore dei gradi w: osservando che $w\mathbbm{1}=a+1+2+1+2=a+6$, otteniamo il vettore della distribuzione invariante di centralità:
+\[\pi=(\frac{a+1}{a+6}, \frac{2}{a+6},\frac{1}{a+6},\frac{2}{a+6})\]
+
+\item %2d
+Sia $x(0)=(-1,1,-1,1)$ il vettore delle opinioni iniziali. Per ciò che è stato detto nel punto precedente, sappiamo che il limite del profilo delle opinioni esiste per $a=0$ e il limite sarà: 
+\begin{multline*}\lim_{t \to \infty}x_i(t)=\sum_{i \in \mathcal{V}}\pi_ix_i(0)=\\ = \frac{1}{6}(-1)+ \frac{1}{3}(1)+\frac{1}{6}(-1)+\frac{1}{3}(1)=\frac{1}{3}\end{multline*}
+
+\item  %2e
+Da quanto visto al punto precedente \[\lim_{t \to \infty}x_1(t)=\frac{2-a}{a+6}\leq0 \Leftrightarrow a\geq 2\]
+Quindi il valore minimo per il quale il limite dell'opinione di $x_1$ è minore di 0 è $a=2$.
+
+\item %2f 
+Calcoliamo innanzitutto com'è fatta della varianza da minimizzare rispetto ad a; indicandola con $f(a)$ abbiamo: 
+\begin{multline*}f(a):=Var(\lim_{t \to \infty}x_1(t)) = Var( \pi_1x_1(0)+\pi_2x_2(0)+\pi_3x_3(0)+\pi_4x_4(0))=\\ =\sum_{i=1}^4\pi^2_i Var(x_i(0)) = \sum_{i=1}^4\pi_i^2
+=\frac{1}{(a+6)^2}((a+2)^2+4+1+4)=\end{multline*}
+\[=\frac{a^2+2a+10}{(a+6)^2}\]
+avendo utilizzato le proprietà della varianza, il fatto che gli $x_i(0)$ fossero variabili aleatorie indipendenti fra loro (quindi con co\-va\-rian\-za nulla) e varianza unitaria.\\
+Osserviamo che tale funzione è convessa, quindi per calcolare il valore di a che la minimizzi è sufficiente calcolare il valore per il quale si annulla la derivata prima:
+\[f'(a)=\frac{10a-8}{(a+6)^3}=0 \Leftrightarrow a=\frac{4}{5}\]
+Quindi il valore che minimizza la varianza del limite del consenso è $a=\frac{4}{5}$.
+\end{enumerate}
+
+
+
+\end{enumerate}
+\end{document}
