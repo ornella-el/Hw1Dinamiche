@@ -1,0 +1,123 @@
+\documentclass[13pt,largemargins]{homework}
+
+\usepackage{lipsum}
+\usepackage{amssymb}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{amsfonts}
+\usepackage{hyperref}
+\usepackage{bbm}
+\usepackage{amsmath}
+\usepackage{epstopdf}
+\usepackage{enumitem}
+\usepackage{subcaption}
+\usepackage{bbm}
+
+\setcounter{MaxMatrixCols}{15}
+
+
+\begin{document}
+\section %ESERCIZIO 3
+\begin{enumerate}[label=(\alph*)]
+%inserire grafo ???
+\item %3a
+Il grafo in questione è indiretto e aciclico. Il vettore dei vertici, ordinati in ordine alfabetico, risulta essere:
+\begin{gather*}
+v = \{ Acciaiuoli, Albizzi, Barbadori, Bischeri, Castellani,\\
+Ginori, Guadagni, Lamberteschi, Medici, Pazzi,\\ Peruzzi, Ridolfi, Salviati, Strozzi, Tornabuoni \}\\
+\end{gather*}
+
+Si procede pertanto scrivendo la matrice di adiacenza \(W\) ed il vettore dei gradi \(w_i\). 
+
+\[W=\begin{bmatrix}
+	0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0\\
+	0 & 0 & 0 & 0 & 0 & 1 & 1 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0\\
+	0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0\\
+	0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 1 & 0 & 0 & 1 & 0\\
+	0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 1 & 0\\
+	0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+	0 & 1 & 0 & 1 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 1\\
+	0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+	1 & 1 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 1 & 0 & 1\\
+	0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0\\
+	0 & 0 & 0 & 1 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0\\
+	0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 1 & 0\\
+	0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 1 & 0 & 0 & 0 & 0 & 0\\
+	0 & 0 & 0 & 1 & 1 & 0 & 0 & 0 & 0 & 0 & 1 & 1 & 0 & 0 & 0\\
+	0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0
+	\end{bmatrix}\]
+	
+	\begin{gather*}
+	\omega_i = (1, 3, 2, 3, 3, 1, 4, 1, 6, 1, 3, 2, 2, 4, 2)\\
+	\end{gather*}
+La misura di centralità invariante è unica e vale: 
+\begin{gather*}
+	\pi_i = ( \frac{1}{38}, \frac{3}{38}, \frac{1}{19}, \frac{3}{38}, \frac{3}{38}, \frac{1}{38}, \frac{2}{38}, \frac{1}{38}, \frac{3}{19}, \frac{1}{38}, \frac{3}{38}, \frac{1}{19}, \frac{1}{19}, \frac{2}{19}, \frac{1}{19} ).\\
+\end{gather*}
+	
+	Essendo il grafo fortemente connesso e aperiodico si può concludere che la dinamica di averaging di French-De Groot converge al valore di consenso come nell'esercizio precedente: 
+\[\lim_{t \to \infty}x_i(t)=\pi ' x(0)= \sum_i 	\pi_i x_i(0), \forall x(0)\] e pertanto, essendo $x(0)=[0,0,0,0,0,0,0,0,1,0,0,0,0,-1,0]'$ il vettore delle condizioni iniziali, si ottiene che il valore finale di consenso vale: 
+\[\lim_{t \to \infty}x_i(t)= (1)\frac{3}{19}+(-1)\frac{2}{19}=\frac{1}{19}\]
+
+\item %3b 
+%qui ci va il codice Matlab del secondo punto 
+	
+\item %3c
+L'insieme dei nodi stubborn $S=\{Castellani, Guadagni, Medici, Strozzi\}$ è globalmente raggiungibile. Sia $D=diag(\omega_i)$ e \(P\) la matrice dei pesi normalizzata
+\[P=D^{-1}W=\begin{bmatrix} 
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0\\
+	0 & 0 & 0 & 0 & 0 & \frac{1}{3} & \frac{1}{3} & 0 & \frac{1}{3} & 0 & 0 & 0 & 0 & 0 & 0\\
+	0 & 0 & 0 & 0 & \frac{1}{2} & 0 & 0 & 0 & \frac{1}{2} & 0 & 0 & 0 & 0 & 0 & 0\\
+	0 & 0 & 0 & 0 & 0 & 0 & \frac{1}{3} & 0 & 0 & 0 & \frac{1}{3} & 0 & 0 & \frac{1}{3} & 0\\
+	0 & 0 & \frac{1}{3} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \frac{1}{3} & 0 & 0 & \frac{1}{3} & 0\\
+	0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+	0 & \frac{1}{4} & 0 & \frac{1}{4} & 0 & 0 & 0 & \frac{1}{4} & 0 & 0 & 0 & 0 & 0 & 0 & \frac{1}{4}\\
+	0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+	\frac{1}{6} & \frac{1}{6} & \frac{1}{6} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \frac{1}{6} & \frac{1}{6} & 0 & \frac{1}{6}\\
+	0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0\\
+	0 & 0 & 0 & \frac{1}{3} & \frac{1}{3} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \frac{1}{3} & 0\\
+	0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \frac{1}{2} & 0 & 0 & 0 & 0 & \frac{1}{2} & 0\\
+	0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \frac{1}{2} & \frac{1}{2} & 0 & 0 & 0 & 0 & 0\\
+	0 & 0 & 0 & \frac{1}{4} & \frac{1}{4} & 0 & 0 & 0 & 0 & 0 & \frac{1}{4} & \frac{1}{4} & 0 & 0 & 0\\
+	0 & 0 & 0 & 0 & 0 & 0 & \frac{1}{2} & 0 & \frac{1}{2} & 0 & 0 & 0 & 0 & 0 & 0
+\end{bmatrix}\]
+Pertanto, il vettore di equilibrio della dinamica di averaging è dato dalla risoluzione del seguente sistema lineare
+\begin{equation}
+	\begin{cases}
+		x_5 = x_7 = x_{14} = -1\\
+		x_9 = +1\\
+		x_i = \sum\limits_{j} P_{ij}x_j, \j=\{1,2,3,4,6,8,10,11,12,13,15\}
+	\end{cases}
+\end{equation}	
+
+\begin{equation}
+	\begin{cases}
+		x_5 = x_7 = x_{14} = -1\\
+		x_9 = +1\\
+		x_1 = x_9\\		
+		x_2 = \frac{1}{3}x_6 + \frac{1}{3}x_7 + \frac{1}{3}x_9\\
+		x_3 = \frac{1}{2}x_5 + \frac{1}{3}x_9\\
+		x_4 = \frac{1}{3}x_7 + \frac{1}{3}x_{11} + \frac{1}{3}x_{14}\\
+		x_6 = x_2\\
+		x_8 = x_7\\
+		x_{10} = x_{13}\\
+		x_{11} = \frac{1}{3}x_4 + \frac{1}{3}x_5 + \frac{1}{3}x_{14}\\		
+		x_{12} = \frac{1}{2}x_9 + \frac{1}{3}x_{14}\\
+		x_{13} = \frac{1}{2}x_9 + \frac{1}{2}x_{10}\\
+		x_{15} = \frac{1}{2}x_7 + \frac{1}{2}x_9\\	
+	\end{cases}
+\end{equation}	
+
+La soluzione del sistema è
+\begin{equation}
+x(0)=[1,0,0,-1,-1,0,-1,-1,1,1,-1,0,1,-1,0]'
+\end{equation}
+da cui si deduce che Acciaiuoli, Pazzi e Salviati avranno la stessa opinionde dei Medici pari a $+1$ mentre Bischeri, Castellani, Guadagni, Lamberteschi, Peruzzi e Strozzi condivideranno l'opinione $-1$ ed i restanti Albizzi, Barbadori, Ginori, Ridolfi e Tornabuoni manterranno l'opinione iniziale pari a $0$.  
+
+\item %3d 
+%Page Rank centrality
+
+
+\end{enumerate}
+
+\end{document}
