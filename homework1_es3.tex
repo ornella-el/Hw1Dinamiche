@@ -34,44 +34,42 @@ frame=lines
 Il grafo in questione è indiretto e aciclico. Il vettore dei vertici, ordinati in ordine alfabetico, risulta essere:
 \begin{gather*}
 v = \{ Acciaiuoli, Albizzi, Barbadori, Bischeri, Castellani,\\
-Ginori, Guadagni, Lamberteschi, Medici, Pazzi,\\ Peruzzi, Ridolfi, Salviati, Strozzi, Tornabuoni \}\\
+Ginori, Guadagni, Lamberteschi, Pazzi, Peruzzi,\\ Ridolfi, Salviati, Tornabuoni, Strozzi, Medici\}\\
 \end{gather*}
-
 Si procede pertanto scrivendo la matrice di adiacenza \(W\) ed il vettore dei gradi \(w_i\). 
-
 \[W=\begin{bmatrix}
-	0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0\\
-	0 & 0 & 0 & 0 & 0 & 1 & 1 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0\\
-	0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0\\
-	0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 1 & 0 & 0 & 1 & 0\\
-	0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 1 & 0\\
+	0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1\\
+	0 & 0 & 0 & 0 & 0 & 1 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1\\
+	0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1\\
+	0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 1 & 0 & 0 & 0 & 1 & 0\\
+	0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 1 & 0\\
 	0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
-	0 & 1 & 0 & 1 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 1\\
+	0 & 1 & 0 & 1 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 1 & 0 & 1\\
 	0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
-	1 & 1 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 1 & 0 & 1\\
-	0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0\\
+	0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0\\
 	0 & 0 & 0 & 1 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0\\
-	0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 1 & 0\\
-	0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 1 & 0 & 0 & 0 & 0 & 0\\
-	0 & 0 & 0 & 1 & 1 & 0 & 0 & 0 & 0 & 0 & 1 & 1 & 0 & 0 & 0\\
-	0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0
+	0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 1\\
+	0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 1\\
+	0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1\\
+	0 & 0 & 0 & 1 & 1 & 0 & 0 & 0 & 0 & 1 & 1 & 0 & 0 & 0 & 0\\	
+	1 & 1 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 1 & 1 & 0 & 0
 	\end{bmatrix}\]
 	
 	\begin{gather*}
-	\omega_i = (1, 3, 2, 3, 3, 1, 4, 1, 6, 1, 3, 2, 2, 4, 2)\\
+	\omega_i = (1, 3, 2, 3, 3, 1, 4, 1, 1, 3, 2, 2, 2, 4, 6)\\
 	\end{gather*}
 La misura di centralità invariante è unica e vale: 
 \begin{gather*}
-	\pi_i = ( \frac{1}{38}, \frac{3}{38}, \frac{1}{19}, \frac{3}{38}, \frac{3}{38}, \frac{1}{38}, \frac{2}{19}, \frac{1}{38}, \frac{3}{19}, \frac{1}{38}, \frac{3}{38}, \frac{1}{19}, \frac{1}{19}, \frac{2}{19}, \frac{1}{19} ).\\
+	\pi_i = ( \frac{1}{38}, \frac{3}{38}, \frac{1}{19}, \frac{3}{38}, \frac{3}{38}, \frac{1}{38}, \frac{2}{19}, \frac{1}{38}, \frac{1}{38}, \frac{3}{38}, \frac{1}{19}, \frac{1}{19}, \frac{1}{19}, \frac{2}{19}, \frac{3}{19}).\\
 \end{gather*}
 	
-	Essendo il grafo fortemente connesso e aperiodico si può concludere che la dinamica di averaging di French-De Groot converge al valore di consenso come nell'esercizio precedente: 
-\[\lim_{t \to \infty}x_i(t)=\pi ' x(0)= \sum_i 	\pi_i x_i(0), \forall x(0)\] e pertanto, essendo $x(0)=[0,0,0,0,0,0,0,0,1,0,0,0,0,-1,0]'$ il vettore delle condizioni iniziali, si ottiene che il valore finale di consenso vale: 
-\[\lim_{t \to \infty}x_i(t)= (1)\frac{3}{19}+(-1)\frac{2}{19}=\frac{1}{19}\]
+	Essendo il grafo fortemente connesso e aperiodico si può concludere che la dinamica di averaging di French-De Groot converge al valore di consenso, come nell'esercizio precedente, dato dal limite: 
+\[\lim_{t \to \infty}x_i(t)=\pi ' x(0)= \sum_i 	\pi_i x_i(0), \forall x(0)\] e pertanto, essendo $x(0)=[0,0,0,0,0,0,0,0,0,0,0,0,0, -1, 1]'$ il vettore delle condizioni iniziali, si ottiene che il valore finale di consenso vale: 
+\[\lim_{t \to \infty}x_i(t)= (-1)\frac{2}{19}+(1)\frac{3}{19}=\frac{1}{19}\]
 
 \item %3b 
 %qui ci va il codice Matlab del secondo punto 
-Si riporta ora il codice Matlab sviluppato per visualizzare l'evoluzione della dinamica di opinione dei nodi del grafo, avendo assegnato ai due nodi stubborn \(\{{Strozzi}, {Medici}\}\)  rispettivamente i valori -1, +1. 
+Si riporta ora il codice Matlab sviluppato per visualizzare l'evoluzione della dinamica di opinione dei nodi del grafo, avendo assegnato ai due nodi stubborn \(\{\text{Strozzi}, \text{Medici}\}\)  rispettivamente i valori -1, +1. 
 
 
 \begin{lstlisting}
@@ -177,76 +175,126 @@ Di seguito si riporta il grafico così prodotto, dal quale si evince che già do
 
 Il vettore di equilibrio $x(t)$ vale: 
 \[x(t)=\begin{pmatrix}
-    1.0000 &Acciaiuoli\\
-    0.6363 &Albizzi\\
-    0.2727 &Barbadori\\
-   -0.4546 &Bischeri\\
-   -0.4546 &Castellani\\	
-    0.6362 &Ginori\\
-    0.2725 &Guadagni\\
-    0.2726 &Lamberteschi\\
-    1.0000 &Pazzi\\
-   -0.6364 &Peruzzi\\
-         0 &Ridolfi\\
-    1.0000 &Salviati\\
-    0.6363 &Tornabuoni\\
-   -1.0000 &Strozzi\\
-    1.0000 &Medici   
+    1.0000 \\
+    0.6363 \\
+    0.2727 \\
+   -0.4546 \\
+   -0.4546 \\	
+    0.6362 \\
+    0.2725 \\
+    0.2726 \\
+    1.0000 \\
+   -0.6364 \\
+         0 \\
+    1.0000 \\
+    0.6363 \\
+   -1.0000 \\
+    1.0000    
 \end{pmatrix}\]
 \item%3c
-L'insieme dei nodi stubborn $S=\{Castellani, Guadagni, Medici, Strozzi\}$ è globalmente raggiungibile. Sia $D=diag(\omega_i)$ e \(P\) la matrice dei pesi normalizzata
+L'insieme dei nodi stubborn $S=\{Castellani, Guadagni, Medici, Strozzi\}$ è globalmente raggiungibile. Sia $D=diag(\omega_i)$ e \(P\) la matrice dei pesi normalizzata. 
 \[P=D^{-1}W=\begin{bmatrix} 
-0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0\\
-	0 & 0 & 0 & 0 & 0 & \frac{1}{3} & \frac{1}{3} & 0 & \frac{1}{3} & 0 & 0 & 0 & 0 & 0 & 0\\
-	0 & 0 & 0 & 0 & \frac{1}{2} & 0 & 0 & 0 & \frac{1}{2} & 0 & 0 & 0 & 0 & 0 & 0\\
-	0 & 0 & 0 & 0 & 0 & 0 & \frac{1}{3} & 0 & 0 & 0 & \frac{1}{3} & 0 & 0 & \frac{1}{3} & 0\\
-	0 & 0 & \frac{1}{3} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \frac{1}{3} & 0 & 0 & \frac{1}{3} & 0\\
-	0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
-	0 & \frac{1}{4} & 0 & \frac{1}{4} & 0 & 0 & 0 & \frac{1}{4} & 0 & 0 & 0 & 0 & 0 & 0 & \frac{1}{4}\\
-	0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
-	\frac{1}{6} & \frac{1}{6} & \frac{1}{6} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \frac{1}{6} & \frac{1}{6} & 0 & \frac{1}{6}\\
-	0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0\\
-	0 & 0 & 0 & \frac{1}{3} & \frac{1}{3} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \frac{1}{3} & 0\\
-	0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \frac{1}{2} & 0 & 0 & 0 & 0 & \frac{1}{2} & 0\\
-	0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \frac{1}{2} & \frac{1}{2} & 0 & 0 & 0 & 0 & 0\\
-	0 & 0 & 0 & \frac{1}{4} & \frac{1}{4} & 0 & 0 & 0 & 0 & 0 & \frac{1}{4} & \frac{1}{4} & 0 & 0 & 0\\
-	0 & 0 & 0 & 0 & 0 & 0 & \frac{1}{2} & 0 & \frac{1}{2} & 0 & 0 & 0 & 0 & 0 & 0
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1\\
+0 & 0 & 0 & 0 & 0 & \frac{1}{3} & \frac{1}{3} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \frac{1}{3} \\
+0 & 0 & 0 & 0 & \frac{1}{2} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \frac{1}{2}\\
+0 & 0 & 0 & 0 & 0 & 0 & \frac{1}{3} & 0 & 0 & \frac{1}{3} & 0 & 0 & 0 & \frac{1}{3} & 0\\
+0 & 0 & \frac{1}{3} & 0 & 0 & 0 & 0 & 0 & 0 & \frac{1}{3} & 0 & 0 & 0 & \frac{1}{3} & 0\\
+0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+0 & \frac{1}{4} & 0 & \frac{1}{4} & 0 & 0 & 0 & \frac{1}{4} & 0 & 0 & 0 & 0 & \frac{1}{4} & 0 & 0\\
+0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0\\
+0 & 0 & 0 & \frac{1}{3} & \frac{1}{3} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \frac{1}{3} & 0\\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \frac{1}{2} & \frac{1}{2}\\
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \frac{1}{2} & 0 & 0 & 0 & 0 & 0 & \frac{1}{2}\\
+0 & 0 & 0 & 0 & 0 & 0 & \frac{1}{2} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \frac{1}{2}\\
+0 & 0 & 0 & \frac{1}{4} & \frac{1}{4} & 0 & 0 & 0 & 0 & 0 & \frac{1}{4} & \frac{1}{4} & 0 & 0 & 0\\
+\frac{1}{6} & \frac{1}{6} & \frac{1}{6} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \frac{1}{6} & \frac{1}{6} & 0 & 0
 \end{bmatrix}\]
+ 
+
 Pertanto, il vettore di equilibrio della dinamica di averaging è dato dalla risoluzione del seguente sistema lineare
 \begin{equation}
 	\begin{cases}
 		x_5 = x_7 = x_{14} = -1\\
-		x_9 = +1\\
-		x_i = \sum\limits_{j} P_{ij}x_j, \ j=\{1,2,3,4,6,8,10,11,12,13,15\}
+		x_{15} = +1\\
+		x_i = \sum\limits_{j} P_{ij}x_j, \ j=\{1,2,3,4,6,8,9,10,11,12,13\}
 	\end{cases}
 \end{equation}	
 
 \begin{equation}
 	\begin{cases}
 		x_5 = x_7 = x_{14} = -1\\
-		x_9 = +1\\
-		x_1 = x_9\\		
-		x_2 = \frac{1}{3}x_6 + \frac{1}{3}x_7 + \frac{1}{3}x_9\\
-		x_3 = \frac{1}{2}x_5 + \frac{1}{3}x_9\\
-		x_4 = \frac{1}{3}x_7 + \frac{1}{3}x_{11} + \frac{1}{3}x_{14}\\
+		x_15 = +1\\
+		x_1 = x_15\\		
+		x_2 = \frac{1}{3}x_6 + \frac{1}{3}x_7 + \frac{1}{3}x_15\\
+		x_3 = \frac{1}{2}x_5 + \frac{1}{3}x_15\\
+		x_4 = \frac{1}{3}x_7 + \frac{1}{3}x_{10} + \frac{1}{3}x_{14}\\
 		x_6 = x_2\\
 		x_8 = x_7\\
-		x_{10} = x_{13}\\
-		x_{11} = \frac{1}{3}x_4 + \frac{1}{3}x_5 + \frac{1}{3}x_{14}\\		
-		x_{12} = \frac{1}{2}x_9 + \frac{1}{3}x_{14}\\
-		x_{13} = \frac{1}{2}x_9 + \frac{1}{2}x_{10}\\
-		x_{15} = \frac{1}{2}x_7 + \frac{1}{2}x_9\\	
+		x_{9} = x_{12}\\
+		x_{10} = \frac{1}{3}x_4 + \frac{1}{3}x_5 + \frac{1}{3}x_{14}\\		
+		x_{11} = \frac{1}{2}x_15 + \frac{1}{3}x_{14}\\
+		x_{12} = \frac{1}{2}x_15 + \frac{1}{2}x_{9}\\
+		x_{13} = \frac{1}{2}x_7 + \frac{1}{2}x_15\\	
 	\end{cases}
 \end{equation}	
 
 La soluzione del sistema è
 \begin{equation}
-x(0)=[1,0,0,-1,-1,0,-1,-1,1,1,-1,0,1,-1,0]'
+x(t)=[1,0,0,-1,-1,0,-1,-1,1,-1,0,1,-1,0,1]'
 \end{equation}
-da cui si deduce che Acciaiuoli, Pazzi e Salviati avranno la stessa opinionde dei Medici pari a $+1$ mentre Bischeri, Castellani, Guadagni, Lamberteschi, Peruzzi e Strozzi condivideranno l'opinione $-1$ ed i restanti Albizzi, Barbadori, Ginori, Ridolfi e Tornabuoni manterranno l'opinione iniziale pari a $0$.  
+da cui si deduce che Acciaiuoli, Pazzi e Salviati avranno la stessa opinione dei Medici pari a $+1$ mentre Bischeri, Castellani, Guadagni, Lamberteschi, Peruzzi e Strozzi condivideranno l'opinione $-1$ ed i restanti Albizzi, Barbadori, Ginori, Ridolfi e Tornabuoni manterranno l'opinione iniziale pari a $0$.  
 
 \item %3d 
-%Page Rank centrality
+Il vettore di centralità Page-Rank $z$ è la soluzione dell'equazione 
+\begin{equation}
+z = (1-\beta)P'z +\beta\nu
+\end{equation} che equivale a calcolare il limite per $t\to\infty$ della dinamica di rete 
+\begin{equation}
+y(t+1) = (1-\beta)P'y(t) + \lambda
+\end{equation}
+dove $\lambda = \beta\nu$.
+%\[\lim_{t \to \infty} y_i(t)= z\] 
+
+Di seguito il codice Matlab utilizzato. 
+
+\begin{lstlisting}
+%y_new=Q'y_old+lambda
+beta=0.15; 
+nu=(1/n)*ones(n,1);       %entrata uniforme
+Q=(1-beta)*P; 
+lambda=beta*nu;
+
+%inizializzazioni
+y_old = zeros(n,1); 
+y_new = zeros(n,1);
+Y_i = zeros(n,cont_max); 
+
+eps = 1e-4;         %tolleranza
+flag = 1;           %valuta se proseguire in base alla tolleranza
+cont=0; 
+cont_max=60;       	%stima iterazioni necessarie
+
+while(flag && cont<cont_max)
+    cont=cont+1; 
+    y_new = Q'*y_old + lambda;
+    if(y_new - y_old <= epsilon)
+        flag = 0; 
+    else
+        y_old = y_new; 
+    end 
+end
+\end{lstlisting}
+
+Il vettore di centralità ottenuto è il seguente.
+\[z(t)=\begin{pmatrix}
+0.0317\\ 
+0.0819\\ 0.0519\\ 0.0713\\ 0.0714\\ 0.0332\\ 0.1033\\ 0.0319\\ 0.0367\\ 0.0699\\ 0.0513\\ 0.0630\\ 0.0537\\ 0.0920\\ 0.1535\\
+\end{pmatrix}\]. 
+
+
+
+
 
 
 \end{enumerate}
