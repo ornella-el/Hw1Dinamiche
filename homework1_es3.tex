@@ -103,8 +103,8 @@ x(14) = -1;
 x(15) = 1; 
 
 %calcolo matrice P
-w=W*ones(15,1); 
-D=diag(w); 
+w = W*ones(15,1); 
+D = diag(w); 
 P = D\W; 
 
 nR=13;            				%regular nodes
@@ -128,7 +128,7 @@ X_i = zeros(nR, cont_max);      %matrice dei risultati
 %CALCOLO PASSI DELLA DINAMICA
 while(i && cont<cont_max)
    
-    cont=cont+1; 
+    cont = cont+1; 
     
     %Salvo il vettore delle opinioni nella colonna di X_i corrispondente
     X_i(sub2ind(size(X_i),1:nR, repelem(cont, nR))) = x_new; 
@@ -260,23 +260,24 @@ Di seguito il codice Matlab utilizzato.
 
 \begin{lstlisting}
 %y_new=Q'y_old+lambda
-beta=0.15; 
-nu=(1/n)*ones(n,1);       %entrata uniforme
-Q=(1-beta)*P; 
-lambda=beta*nu;
+n = 15; 
+beta = 0.15; 
+nu = (1/n)*ones(n,1);       %entrata uniforme
+Q = (1-beta)*P; 
+lambda = beta*nu;
 
 %inizializzazioni
+cont_max = 60;       	%stima iterazioni necessarie
 y_old = zeros(n,1); 
 y_new = zeros(n,1);
 Y_i = zeros(n,cont_max); 
 
 eps = 1e-4;         %tolleranza
 flag = 1;           %valuta se proseguire in base alla tolleranza
-cont=0; 
-cont_max=60;       	%stima iterazioni necessarie
+cont = 0; 
 
-while(flag && cont<cont_max)
-    cont=cont+1; 
+while(flag && cont < cont_max)
+    cont = cont+1; 
     y_new = Q'*y_old + lambda;
     if(y_new - y_old <= epsilon)
         flag = 0; 
