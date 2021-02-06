@@ -44,6 +44,7 @@ frame=lines
 Realizzato in collaborazione con Andrea Sanna(s222975)
 \end{center}
 \section %ESERCIZIO 1
+
 \begin{enumerate}[label=(\alph*)]
 \item %1a
 I cammini che uniscono il nodo \textit{o} al nodo \textit{d} sono i seguenti: 
@@ -55,13 +56,18 @@ I cammini che uniscono il nodo \textit{o} al nodo \textit{d} sono i seguenti:
 
 Avendo ciascun arco una capacità maggiore di uno, tutti e 3 i cammini supportano flussi unitari. Per far sì che non ci siano più flussi unitari ammissibili, è necessario che la capacità di almeno un arco di ciascuno cammino sia portata a 0 oppure, al più, ad un valore $C < 1$.\\Pertanto, sia $\varepsilon$ tale che $0 < \varepsilon< 1$, basta rimuovere una quantità pari a $2+\varepsilon$ dall'arco \(e_1\) e $1+\varepsilon$ dall'arco \(e_2\) (oppure \(e_5\)) o, equivalentemente, si può pensare di rimuovere $2+\varepsilon$ dall'arco \(e_4\) e $1+\varepsilon$ dall'arco \(e_5\). Entrambe le soluzioni apportano una riduzione minima di capacità pari a $3 + 2\varepsilon$ necessariamente distribuita come descritto. 
 \item %1b
+
 %Dal testo sappiamo che le funzioni di ritardo sono date da:\\ %%%%%%%%%%%$d_1(x)=d_5(x)=x+1, d_3(x)=1, d_2(x)=d_4(x)=5x+1$.\\
 Dal teorema del \textit{Max Flow-Min Cut} il flusso massimo è pari alla somma delle capacità degli archi del taglio minimo. Nel grafo considerato i possibili tagli sono:
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.12]{graphh}%
+\end{figure}
 \begin{itemize}
-\item $u_1$ associato alla partizione $\mathcal{U}_1=\{a,b,d\}$, con capacità $C^*_1=3+2=5$
-\item $u_2$ associato alla partizione $\mathcal{U}_2=\{b,d\}$, \\con capacità $C^*_2=2+2+3=7$
-\item $u_3$ associato alla partizione $\mathcal{U}_3=\{a,d\}$, \\con capacità $C^*_3=3+2=5$
-\item $u_4$ associato alla partizione $\mathcal{U}_4=\{d\}$ \\con capacità $C^*_4=3+2=5$
+\item $u_1$ associato alla partizione $\mathcal{U}_1=\{o\}$, con capacità $C^*_1=3+2=5$
+\item $u_2$ associato alla partizione $\mathcal{U}_2=\{o,a\}$, \\con capacità $C^*_2=2+2+3=7$
+\item $u_3$ associato alla partizione $\mathcal{U}_3=\{o,b\}$, \\con capacità $C^*_3=3+2=5$
+\item $u_4$ associato alla partizione $\mathcal{U}_4=\{o,a,b\}$ \\con capacità $C^*_4=3+2=5$
 \end{itemize}
 Avendo perciò 3 tagli di capacità identica, pari a 5, è opportuno aggiungere le 2 unità di capacità agli archi in comune tra i 3 tagli minimi così da massimizzare il flusso. Una possibile soluzione è la seguente: 
 \begin{center} 
@@ -71,9 +77,9 @@ $C'(e_1) = C(e_1)+1 = 4$ \quad $C'(e_5) = C(e_5)+1 = 3$
 In questo modo si ottiene: 
 \begin{itemize}
 \item $C^*_1=4+2=6$
-\item $C^*_2=2+2+4=8$
-\item $C^*_3=4+2=6$
-\item $C^*_4=4+2=6$\\
+\item $C^*_2=2+2+3=7$
+\item $C^*_3=4+3=7$
+\item $C^*_4=3+3=6$\\
 \end{itemize} 
 
 
@@ -122,7 +128,7 @@ $s.t. \quad z_1+z_2+z_3 = 1$
 \end{center} 
 che equivale a risolvere 
 \begin{center}
-\(\argmin_z 6z_1^2 + 6z_2^2 - 3z_1 -3z_2 + 5 \)\\
+\[\argmin_z 6z_1^2 + 6z_2^2 - 3z_1 -3z_2 + 5 \]
 $s.t. \quad z_3 = 1-z_2 - z_1$
 \end{center} 
 Da qui si deduce che, essendo $f''(z_1) = f''(z_2) = 12 > 0$  la funzione di costo è convessa e pertanto per trovare il minimo valore di $z_1$ e $z_2$ basta osservare dove si annulla la derivata prima. Si ottine quindi che $z_1 = z_2 = \frac{1}{4}$ e risolvendo il seguente sistema 
@@ -135,12 +141,12 @@ Da qui si deduce che, essendo $f''(z_1) = f''(z_2) = 12 > 0$  la funzione di cos
 
 si trova $z_3 = \frac{1}{2}$ e che $z=\{\frac{1}{4}, \frac{1}{4}, \frac{1}{2}\}$.\\\\
 Il corrispondente flusso sugli archi all'ottimo di sistema sarà dato da: \[f^{(SO)}=(\frac{3}{4},\frac{1}{4},\frac{1}{2}, \frac{1}{4}, \frac{3}{4})\].\\
-Il ritardo medio all'ottimo di sistema è invece dato da: \[\sum_{e\in \mathcal{E}}f_e^* d(f_e^*)=\frac{1}{4}(6\frac{1}{4}+2+\frac{1}{2}+\frac{1}{4}(6\frac{1}{4}+\frac{1}{2}+2)+ \frac{1}{2}(\frac{1}{4}+\frac{1}{4}+2\frac{1}{2}+3)=\frac{17}{4}\]
+Il ritardo medio all'ottimo di sistema è invece dato da: \[\sum_{e\in \mathcal{E}}f_e^* d(f_e^*)=\frac{1}{4}(6\frac{1}{4}+2+\frac{1}{2})+\frac{1}{4}(6\frac{1}{4}+\frac{1}{2}+2)+ \frac{1}{2}(\frac{1}{4}+\frac{1}{4}+2\frac{1}{2}+3)=\frac{17}{4}\]
 
 \item Il prezzo dell'anarchia (PoA) è dato dal rapporto fra il ritardo medio all'equilibrio di Wardrop e il costo totale all'ottimo di sistema, quindi:
 \[PoA=\frac{\frac{13}{3}}{\frac{17}{4}}=\frac{52}{51}\]
 
-\item Per portare il \(PoA\) ad 1 bisogna far sì che il costo totale all'ottimo di sistema e quello all'equilibrio di Wardrop si eguaglino. Si deve pertanto trovare un vettore di pedaggi \(\omega \) che vada a modificare l'equilibrio di Wardrop precedente, in modo che questo coincida con l'ottimo di sistema, cioè si abbia che \(f^{(\omega^*)} = f^* \).\\ Il vettore dei pedaggi sarà perciò dato da \[ \omega_i =f_e^* d_e (f_e^*)\]
+\item Per portare il \(PoA\) ad 1 bisogna far sì che il costo totale all'ottimo di sistema e quello all'equilibrio di Wardrop si eguaglino. Si deve pertanto trovare un vettore di pedaggi \(\omega \) che vada a modificare l'equilibrio di Wardrop precedente, in modo che questo coincida con l'ottimo di sistema, cioè si abbia che \(f^{(\omega)} = f^* \).\\ Il vettore dei pedaggi sarà perciò dato da \[ \omega_i =f_e^* d_e (f_e^*)\]
 Si trova quindi che 
 \begin{center}
 \[\omega = (1\frac{3}{4}, 5\frac{1}{4}, 0\frac{1}{2}, 5\frac{1}{4}, 1\frac{3}{4}) = (\frac{3}{4},\frac{5}{4},0,\frac{5}{4},\frac{3}{4})\].  
